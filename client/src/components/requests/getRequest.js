@@ -1,10 +1,10 @@
-import Axios from "axios"
+import axios from "axios"
 
 
 
 export const getData = async() => {
-    const URL = "https://goldfish-app-fbulw.ondigitalocean.app/Event/get"
-    await Axios.get(URL).then((response)=>{
+    const URL = "http://localhost:3001/events"
+    await axios.get(URL).then((response)=>{
         console.log(response.data)
     })
 }
