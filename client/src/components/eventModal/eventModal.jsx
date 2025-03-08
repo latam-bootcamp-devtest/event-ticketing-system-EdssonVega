@@ -19,16 +19,24 @@ export const EventModal = ({
   const [ticketQuantity, setTicketQuantity] = useState(0)
 
   const addTickets = (event) => {
+    setTicketQuantity(event.target.value)
     setTotalPrice(event.target.value * price);
+  };
+
+  const addCustomerName = (event) => {
+    setCustomerName(event.target.value);
+    console.log(customerName)
   };
 
   const buyTicketsRequest = async() => {
     await axios.post("https://goldfish-app-fbulw.ondigitalocean.app/Booking",{
+        applicationId:"93751094-064d-4af2-9a36-e811b3fcede9",
+        userId: "e708a645-c4d5-4907-a5ad-e775f16e4d07",
         eventId : id,
-    customerName: customerName,
-  ticketQuantity: ticketQuantity
+        ticketQuantity: ticketQuantity,
+        customerName: customerName
     }).then((response)=>{
-        alert(response)
+        alert("Tickets comprados correctamente!")
     })
   }
 
@@ -52,7 +60,7 @@ export const EventModal = ({
           {showForm && (
             <div className="ticketForm">
               <label htmlFor="">Customer name</label>
-              <input type="text" onChange={(event) => addTickets(event)}/>
+              <input type="text" onChange={(event) => addCustomerName(event)}/>
               <label htmlFor="">Tickets to book</label>
               <input type="number" onChange={(event) => addTickets(event)} />
               <h1>Total price: {totalPrice}</h1>
@@ -60,7 +68,7 @@ export const EventModal = ({
           )}
           {showForm ? (
             <div className="confirmButtonsContainer">
-              <button disabled={totalPrice === 0 ? true : false} >Book Now!</button>
+              <button disabled={totalPrice === 0 ? true : false} onClick={buyTicketsRequest}>Book Now!</button>
               <button onClick={() => setShowForm(false)}>Cancel</button>
             </div>
           ) : (
