@@ -1,6 +1,10 @@
 const express = require("express")
 const mysql = require("mysql2")
+const cors = require("cors")
+
 const app = express()
+app.use(cors())
+
 
 
 const db = mysql.createConnection({
@@ -12,7 +16,7 @@ const db = mysql.createConnection({
 
 
 app.get("/events",(req,res)=>{
-    db.query("SELECT FROM upcomingevents ",
+    db.query("SELECT * FROM upcomingevents ",
     (err,result) =>{
         if(err){
             console.log(err)

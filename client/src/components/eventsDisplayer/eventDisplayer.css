@@ -1,6 +1,5 @@
 .eventsContainer{
     display: flex;
-    border: 1px solid red;
     gap: 10px;
     flex-wrap: wrap;
     padding: 50px;

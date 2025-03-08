@@ -17,15 +17,19 @@ export const EventDisplayer = () => {
       setEvens(response.data);
     });
   };
-
+//'https://goldfish-app-fbulw.ondigitalocean.app/Event/09c787f8-a0f8-4e65-9c49-b6fc6cccf25b?applicationId=93751094-064d-4af2-9a36-e811b3fcede9'
   const displayModal = async(id) => {
     console.log("abrir modal")
-    /*
-    await axios.get(`https://goldfish-app-fbulw.ondigitalocean.app/Event/${id}`).then((response)=>{
-        setShowModal(true);
+    await axios.get(`https://goldfish-app-fbulw.ondigitalocean.app/Event/${id}?applicationId=93751094-064d-4af2-9a36-e811b3fcede9`).then((response)=>{
+        console.log(response.data)    
+       setShowModal(true);
         setModal(response.data);
-    })*/
+    })
   };
+
+  const closeModal = () => {
+    setShowModal(false)
+  }
 
   useEffect(() => {
     getRequest();
@@ -50,12 +54,14 @@ export const EventDisplayer = () => {
       {showModal && (
         <EventModal
           id={modal.id}
-          image={modal.eventImage}
-          name={modal.eventName}
-          date={modal.eventDate}
-          description={modal.eventDescription}
-          price={modal.ticketPrice}
+          image={modal.image}
+          name={modal.name}
+          date={modal.date}
+          location={modal.location}
+          description={modal.description}
+          price={modal.price}
           availableSeats={modal.availableTickets}
+          closeModal={closeModal}
         />
       )}
     </div>
