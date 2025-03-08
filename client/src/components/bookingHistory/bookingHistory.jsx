@@ -23,7 +23,7 @@ const getHistory = async() => {
     
   return (
     <div >
-       <button>
+       <button >
        Booking history
         </button>
         <div className='historyContainer'>
