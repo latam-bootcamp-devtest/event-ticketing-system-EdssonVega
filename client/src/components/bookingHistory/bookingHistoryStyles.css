@@ -1,0 +1,8 @@
+.historyContainer{
+    display: flex;
+}
+
+.historyCardsContainer{
+    border: 2px solid blue;
+    transform: scale(0.6);
+}
